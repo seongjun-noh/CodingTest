@@ -1,0 +1,15 @@
+WITH
+    Sedan as (
+        SELECT CAR_ID 
+        FROM CAR_RENTAL_COMPANY_CAR
+        WHERE CAR_TYPE LIKE '세단'
+    ),
+    Rental as (
+    SELECT DISTINCT CAR_ID
+    FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY
+    WHERE MONTH(START_DATE) = 10
+    )
+    
+SELECT Sedan.CAR_ID
+FROM Sedan JOIN Rental ON Sedan.CAR_ID = Rental.CAR_ID
+ORDER BY CAR_ID DESC
